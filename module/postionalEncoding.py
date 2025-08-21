@@ -1,9 +1,6 @@
 import torch
 import torch.nn as nn
-
-
-def getDevice():
-    return torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+from module.cuda import getDevice
 
 class PE(nn.Module):
     def __init__(self, DModel, MaxSequenceLength):

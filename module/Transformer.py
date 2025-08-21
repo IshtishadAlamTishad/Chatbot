@@ -10,7 +10,7 @@ class Transformer(nn.Module):
         self.Encoder = Encoder(DModel, FfnHidden, NumHeads, DropProb, NumLayers, MaxSequenceLength, LanguageToIndex, StartToken, EndToken, PaddingToken)
         self.Decoder = Decoder(DModel, FfnHidden, NumHeads, DropProb, NumLayers, MaxSequenceLength, LanguageToIndex, StartToken, EndToken, PaddingToken)
         self.Linear = nn.Linear(DModel, VocabSize)
-        self.Device = getDevice
+        self.Device = getDevice()
 
     def forward(self, X, Y, EncoderSelfAttentionMask=None, DecoderSelfAttentionMask=None, DecoderCrossAttentionMask=None, EncStartToken=False, EncEndToken=False, DecStartToken=True, DecEndToken=False):
         X = self.Encoder(X, EncoderSelfAttentionMask, StartToken=EncStartToken, EndToken=EncEndToken)

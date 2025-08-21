@@ -31,7 +31,7 @@ class SentenceEmbedding(nn.Module):
         for SentenceNum in range(len(Batch)):
             Tokenized.append(Tokenize(Batch[SentenceNum], StartToken, EndToken))
         Tokenized = torch.stack(Tokenized)
-        return Tokenized.to(getDevice)
+        return Tokenized.to(getDevice())
     
     def forward(self, X, StartToken, EndToken):
         X = self.BatchTokenize(X, StartToken, EndToken)

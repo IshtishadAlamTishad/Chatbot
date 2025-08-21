@@ -4,7 +4,7 @@ import string
 from module.cuda import getDevice
 
 
-def TestTransformer(TransformerModel, LanguageToIndex, IndexToLanguage, MaxSequenceLength, TestQueries):
+def Test(TransformerModel, LanguageToIndex, IndexToLanguage, MaxSequenceLength, TestQueries):
     TransformerModel.eval()
     Results = []
     with torch.no_grad():
