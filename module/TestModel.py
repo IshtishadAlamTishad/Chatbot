@@ -16,11 +16,11 @@ def Test(TransformerModel, LanguageToIndex, IndexToLanguage, MaxSequenceLength, 
                 QueryTokens = QueryTokens[:MaxSequenceLength - 2]
             
             QueryTokens = [LanguageToIndex['<START>']] + QueryTokens + [LanguageToIndex['<END>']] + [LanguageToIndex['<PAD>']] * (MaxSequenceLength - len(QueryTokens) - 2)
-            InputTensor = torch.tensor([QueryTokens]).to(getDevice)
-            TargetTensor = torch.tensor([[LanguageToIndex['<START>']] + [LanguageToIndex['<PAD>']] * (MaxSequenceLength - 1)]).to(getDevice)
+            InputTensor = torch.tensor([QueryTokens]).to(getDevice())
+            TargetTensor = torch.tensor([[LanguageToIndex['<START>']] + [LanguageToIndex['<PAD>']] * (MaxSequenceLength - 1)]).to(getDevice())
             
             SeqLen = InputTensor.size(1)
-            SelfAttentionMask = torch.triu(torch.ones(SeqLen, SeqLen), diagonal=1).bool().to(getDevice)
+            SelfAttentionMask = torch.triu(torch.ones(SeqLen, SeqLen), diagonal=1).bool().to(getDevice())
             SelfAttentionMask = SelfAttentionMask * -1e9
             
             Output = TransformerModel(InputTensor, TargetTensor[:, :-1],

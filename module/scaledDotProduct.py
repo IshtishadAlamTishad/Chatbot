@@ -8,7 +8,7 @@ def scaledDotProduct(q,k,v,mask=None):
 
     scaled = torch.matmul(q,k.transpose(-1,-2))/math.sqrt(dk)
     if mask is not None:
-        scaled += mask
+        scaled = scaled + mask
     
     a = F.softmax(scaled,dim=-1)
     v = torch.matmul(a,v)
